@@ -1,11 +1,9 @@
-const API_URL = "https://fakestoreapi.com"
-
-export async function getCategories() {
-  const response = await fetch(`${API_URL}/products/categories`)
-  return response.json()
-}
-
-export async function getProductsByCategory(category: string) {
-  const response = await fetch(`${API_URL}/products/category/${category}`)
+export async function fetchInstance(url: string) {
+  const response = await fetch(`https://fakestoreapi.com/${url}`, {
+    next: { revalidate: false },
+  })
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
   return response.json()
 }
