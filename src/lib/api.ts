@@ -7,3 +7,20 @@ export async function fetchInstance(url: string) {
   }
   return response.json()
 }
+
+export async function getCategories() {
+  return fetchInstance('products/categories')
+}
+
+export interface Product {
+  id: number
+  title: string
+  price: number
+  description: string
+  category: string
+  image: string
+}
+
+export async function getProductsByCategory(category: string): Promise<Product[]> {
+  return fetchInstance(`products/category/${category}`)
+}

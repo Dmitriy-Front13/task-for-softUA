@@ -1,9 +1,9 @@
-import { fetchInstance } from "@/lib/api";
+import { getCategories } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const categories = await fetchInstance('products/categories');
+  const categories = await getCategories();
   return (
     <>
       <h1 className="text-2xl font-bold mb-4">Product Categories</h1>
@@ -11,7 +11,7 @@ export default async function Home() {
         {categories.map((category: string, index: number) => (
            <Link
            key={category}
-           href={`/category/${category}`}
+           href={`/${category}`}
            className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
          >
            <Image
